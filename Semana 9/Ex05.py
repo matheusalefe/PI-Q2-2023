@@ -1,16 +1,11 @@
-def somar_vizinhos(matriz:list, linha:int, coluna:int):
+def somar_vizinhos(matriz: list, linha: int, coluna: int):
     soma = 0
-    for i in range (-1,2):
-        for j in range(-1,2):
-            soma += matriz[linha + i][coluna + j]
+    for i in range(-1, 2):
+        for j in range(-1, 2):
+            if (linha != 0 and coluna != 0 and (linha + i) < len(matriz) and (coluna + j) < len(matriz[0])) \
+                    or ((linha == 0 and coluna == 0) and (linha + i) >= 0 and (coluna + j) >= 0) \
+                    or ((linha != 0 and coluna == 0) and (linha + i) < len(matriz) and (coluna + j) >= 0) \
+                    or ((linha == 0 and coluna != 0) and (linha + i) >= 0 and (coluna + j) < len(matriz[0])):
+                soma += matriz[linha + i][coluna + j]
     soma -= matriz[linha][coluna]
     return soma
-
-mat = [
-    [1,2,3,4,5,6,7],
-    [2,1,3,1,1,0,0],
-    [3,1,2,2,2,1,0],
-    [1,0,1,5,5,1,1],
-    [1,1,1,0,1,0,0]
-]
-print(somar_vizinhos(mat, 2, 3))
